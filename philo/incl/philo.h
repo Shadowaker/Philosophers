@@ -6,7 +6,7 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 21:41:53 by jaeskim           #+#    #+#             */
-/*   Updated: 2022/04/12 13:45:01 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/04/13 19:27:10 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,8 @@ void		*philo(void *argv);
 void		*monitor(void *argv);
 void		*monitor_each_must_eat(void *argv);
 
-int			ft_strlen(char *str);
-int			ft_atoi(const char *nptr);
-int			ft_puterror(char *str);
-int			ft_calloc(void *dst, size_t size);
+int			ft_atoi(char *str);
+int			ft_error_handler(int error);
 long long	time_to_ms(struct timeval now);
 void		log_(t_philo *philo, char *str);
 

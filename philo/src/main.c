@@ -6,7 +6,7 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:44:46 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/04/12 17:24:43 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/04/13 19:27:24 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ static void	create_philos(t_env *env)
 int	main(int argc, char **argv)
 {
 	t_env	env;
+	int		ck;
 
 	memset(&env, 0, sizeof(env));
 	if (argc != 5 && argc != 6)
-	// Error here.
-		return (1);
-	if (init(argc, argv, &env))
-	// Error here.
-		return (1);
+		return (printf("\033[91mError.\nWrong parameters passed.\033[0m"));
+	ck = init(argc, argv, &env);
+	if (ck != 0)
+		return (ft_error_handler(ck));
 	create_philos(&env);
 	join_and_free_philos(&env);
 	return (0);
