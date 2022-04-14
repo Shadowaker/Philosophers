@@ -6,7 +6,7 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:44:23 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/04/13 19:55:35 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/04/14 17:44:16 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static void	pickup_fork(t_philo *philo)
 {
 	pthread_mutex_lock(philo->right);
 	log_(philo, "has taken a fork");
+	if (philo->env->end)
+		return ;
 	pthread_mutex_lock(philo->left);
 	log_(philo, "has taken a fork");
 }
@@ -43,8 +45,17 @@ static void	eating(t_philo *philo)
 
 static void	sleeping(t_philo *philo)
 {
+	int	i;
+
+	i = 0;
 	log_(philo, "is sleeping");
-	usleep(philo->env->time_to_sleep * 1000);
+	while (i < philo->env->time_to_sleep)
+	{
+		if (philo->env->end)
+			return ;
+		usleep(1000);
+		i++;
+	}
 }
 
 static void	thinking(t_philo *philo)

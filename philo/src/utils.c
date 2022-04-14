@@ -6,7 +6,7 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:44:05 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/04/13 19:36:57 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/04/14 17:03:59 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 
 long long	time_to_ms(struct timeval now)
 {
-	long long		ms;
-
-	ms = now.tv_sec * 1000;
-	ms += now.tv_usec / 1000;
-	return (ms);
+	return (now.tv_sec * ((u_int64_t) 1000) + ((u_int64_t) now.tv_usec / 1000));
 }
 
 void	log_(t_philo *philo, char *str)
