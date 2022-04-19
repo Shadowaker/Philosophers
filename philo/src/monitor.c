@@ -6,7 +6,7 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:44:36 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/04/19 15:22:21 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/04/19 17:24:32 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	*monitor(void *argv)
 		gettimeofday(&now, NULL);
 		ms = time_to_ms(now) - time_to_ms(philo->last_time_to_eat);
 		gettimeofday(&now, NULL);
-		if (ms >= (long) philo->env->time_to_die && philo->env->end == 0)
+		if (ms >= philo->env->time_to_die && philo->env->end == 0)
 		{
 			printf("%ld\t%d\t %s\n", \
 				time_to_ms(now) - time_to_ms(philo->env->born_time), \

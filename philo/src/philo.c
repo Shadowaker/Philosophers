@@ -6,7 +6,7 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:44:23 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/04/19 15:39:29 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/04/19 17:42:34 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 static void	pickup_fork(t_philo *philo)
 {
+	pthread_mutex_lock(philo->right);
 	log_(philo, "has taken a fork");
-	if (philo->env->end)
-		return ;
+	while (philo->env->n_philos == 1)
+	{
+		if (philo->env->end)
+			return ;
+		usleep(1);
+	}
 	pthread_mutex_lock(philo->left);
 	log_(philo, "has taken a fork");
 }
