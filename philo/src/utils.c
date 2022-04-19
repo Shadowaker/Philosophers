@@ -6,27 +6,27 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:44:05 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/04/14 17:03:59 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/04/19 15:52:21 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/philo.h"
 
-long long	time_to_ms(struct timeval now)
+long	time_to_ms(struct timeval now)
 {
 	return (now.tv_sec * ((u_int64_t) 1000) + ((u_int64_t) now.tv_usec / 1000));
 }
 
 void	log_(t_philo *philo, char *str)
 {
-	long long		ms;
+	long			ms;
 	struct timeval	now;
 
 	pthread_mutex_lock(&philo->env->mutex_);
 	gettimeofday(&now, NULL);
 	ms = time_to_ms(now) - time_to_ms(philo->env->born_time);
 	if (!philo->env->end)
-		printf("%lld\t%d\t %s\n", ms, philo->n + 1, str);
+		printf("%ld\t%d\t %s\n", ms, philo->n + 1, str);
 	pthread_mutex_unlock(&philo->env->mutex_);
 }
 
@@ -51,9 +51,9 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 int	ft_atoi(char *str)
 {
-	int		i;
-	int		r;
-	int		s;
+	int	i;
+	int	r;
+	int	s;
 
 	i = 0;
 	r = 0;
@@ -80,7 +80,7 @@ int	ft_atoi(char *str)
 int	ft_error_handler(int error)
 {
 	if (error == 1)
-		printf("\033[91mError.\nNegative argument passed.\033[0m");
+		printf("\033[91mError.\nInvalid argument passed.\033[0m");
 	else if (error == 2)
 		printf("\033[91mError.\nThere are no philosophers to simulate.\033[0m");
 	else if (error == 3)
