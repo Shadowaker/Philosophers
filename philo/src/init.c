@@ -6,26 +6,21 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:44:52 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/04/14 17:39:30 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/04/19 12:56:38 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/philo.h"
 
-void	ft_usleep(int time, int n)
+void	ft_usleep(int n)
 {
-	int				ms;
-	int				i;
+	long long		stime;
 	struct timeval	now;
 
 	gettimeofday(&now, NULL);
-	ms = time_to_ms(now) + time;
-	i = 0;
-	while (i < ms)
-	{
-		i = time_to_ms(now);
-		usleep(n);
-	}
+	stime = time_to_ms(now);
+	while ((time_to_ms(now) - stime) < n)
+		usleep(1);
 }
 
 static int	parsing_arg(int argc, char **argv, t_env *env)

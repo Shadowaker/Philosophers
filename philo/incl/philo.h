@@ -6,7 +6,7 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 21:41:53 by jaeskim           #+#    #+#             */
-/*   Updated: 2022/04/14 17:38:16 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/04/19 12:51:30 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ int			ft_atoi(char *str);
 int			ft_error_handler(int error);
 long long	time_to_ms(struct timeval now);
 void		log_(t_philo *philo, char *str);
-void		ft_usleep(int time, int n);
+void		ft_usleep(int n);
 
 #endif
