@@ -6,7 +6,7 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:44:05 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/04/19 15:52:21 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/05/10 20:04:29 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,7 @@ int	ft_error_handler(int error)
 		printf("\033[91mError.\nThere are no philosophers to simulate.\033[0m");
 	else if (error == 3)
 		printf("\033[91mError.\nNot enough space.\033[0m");
+	else if (error == 4)
+		printf("\033[91mError.\nWrong number of parameters passed.\033[0m");
 	return (0);
 }

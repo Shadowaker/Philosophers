@@ -6,11 +6,31 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:44:46 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/04/19 16:06:17 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/05/10 20:04:11 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/philo.h"
+
+static int	ft_isint(char **s, int size)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i < size)
+	{
+		j = 0;
+		while (s[i][j] != '\0')
+		{
+			if (s[i][j] < 48 || s[i][j] > 57)
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
 
 static void	join_and_free_philos(t_env *env)
 {
@@ -58,8 +78,11 @@ int	main(int argc, char **argv)
 	int		ck;
 
 	memset(&env, 0, sizeof(env));
-	if (argc != 5 && argc != 6)
-		return (printf("\033[91mError.\nWrong parameters passed.\033[0m"));
+	if (argc < 5 || argc > 6)
+		return (ft_error_handler(4));
+	ck = ft_isint(argv, argc);
+	if (ck != 1)
+		return (ft_error_handler(1));
 	ck = init(argc, argv, &env);
 	if (ck != 0)
 		return (ft_error_handler(ck));
