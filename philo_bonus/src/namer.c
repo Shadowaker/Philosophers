@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   make_n_name.c                                      :+:      :+:    :+:   */
+/*   namer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 20:17:39 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/05/10 20:40:41 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/05/11 12:50:40 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,27 @@ static int	ft_strlen(char *str)
 	while (*str++)
 		++i;
 	return (i);
+}
+
+long long	time_to_ms(struct timeval now)
+{
+	long long		ms;
+
+	ms = now.tv_sec * 1000;
+	ms += now.tv_usec / 1000;
+	return (ms);
+}
+
+void	pprint(t_philo *philo, char *str)
+{
+	long long		ms;
+	struct timeval	now;
+
+	sem_wait(philo->info->acting);
+	gettimeofday(&now, NULL);
+	ms = time_to_ms(now) - time_to_ms(philo->info->born_time);
+	printf("%lld\t%d\t %s\n", ms, philo->n + 1, str);
+	sem_post(philo->info->acting);
 }
 
 char	*name_process(char *name, int n)

@@ -6,7 +6,7 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 20:17:51 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/05/10 20:20:44 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/05/11 12:46:46 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,26 @@
 void	*finish_monitor(void *arg)
 {
 	int		i;
-	t_info	*info;
+	t_env	*env;
 
-	info = arg;
-	sem_wait(info->end);
+	env = arg;
+	sem_wait(env->end);
 	i = 0;
-	while (i < info->n_philos)
-		kill(info->philos[i++].pid, SIGTERM);
+	while (i < env->n_philos)
+		kill(env->philos[i++].pid, SIGTERM);
 	return (NULL);
 }
 
 void	*monitor_each_must_eat(void *argv)
 {
-	t_info	*info;
+	t_env	*env;
 	int		i;
 
-	info = argv;
+	env = argv;
 	i = 0;
-	while (i++ < info->n_philos)
-		sem_wait(info->n_eat_finish_philo);
-	sem_post(info->end);
+	while (i++ < env->n_philos)
+		sem_wait(env->n_eat_finish_philo);
+	sem_post(env->end);
 	return (NULL);
 }
 

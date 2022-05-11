@@ -1,6 +1,6 @@
 NAME = philo_bonus
 
-SRC = src/main.c src/init.c src/monitor.c src/philo.c src/utils.c
+SRC = src/main.c src/init.c src/monitor.c src/philo.c src/utils.c src/namer.c
 
 HDRS = incl/philo.h
 

@@ -6,7 +6,7 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 20:20:52 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/05/10 20:49:28 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/05/11 12:49:04 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 static void	pickup_fork(t_philo *philo)
 {
 	sem_wait(philo->info->forks);
-	print_philo_msg(philo, "has taken a fork");
+	pprint(philo, "has taken a fork");
 	sem_wait(philo->info->forks);
-	print_philo_msg(philo, "has taken a fork");
+	pprint(philo, "has taken a fork");
 }
 
 static void	eating(t_philo *philo)
 {
 	sem_wait(philo->check);
 	gettimeofday(&philo->last_time_to_eat, NULL);
-	print_philo_msg(philo, "is eating");
+	pprint(philo, "is eating");
 	philo->n_eats += 1;
 	if (philo->n_eats == philo->info->n_must_eat)
 		sem_post(philo->info->n_eat_finish_philo);
@@ -36,13 +36,13 @@ static void	eating(t_philo *philo)
 
 static void	sleeping(t_philo *philo)
 {
-	print_philo_msg(philo, "is sleeping");
+	pprint(philo, "is sleeping");
 	usleep(philo->info->time_to_sleep * 1000);
 }
 
 static void	thinking(t_philo *philo)
 {
-	print_philo_msg(philo, "is thinking");
+	pprint(philo, "is thinking");
 }
 
 void	philo(t_philo *philo)

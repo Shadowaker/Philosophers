@@ -6,7 +6,7 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 20:14:32 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/05/10 20:48:39 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/05/11 12:49:02 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_philo
 	char			*name;
 	sem_t			*check;
 	pid_t			pid;
-	t_env			*info;
+	struct s_env	*info;
 	struct timeval	last_time_to_eat;
 
 }					t_philo;
@@ -60,6 +60,7 @@ int			ft_atoi(char *nptr);
 int			ft_mallocchino(void *dst, size_t size);
 long long	time_to_ms(struct timeval now);
 void		log_(t_philo *philo, char *str);
+void		pprint(t_philo *philo, char *str);
 int			ft_error_handler(char *str);
 
 #endif
