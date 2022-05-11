@@ -6,7 +6,7 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:44:46 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/05/10 20:04:11 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/05/11 17:26:35 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@ static int	ft_isint(char **s, int size)
 		while (s[i][j] != '\0')
 		{
 			if (s[i][j] < 48 || s[i][j] > 57)
-				return (0);
+			{
+				if (s[i][j] == 43 && size != 1)
+					;
+				else
+					return (0);
+			}
 			j++;
 		}
 		i++;
