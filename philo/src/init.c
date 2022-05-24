@@ -6,7 +6,7 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:44:52 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/04/21 16:08:54 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/05/14 18:23:37 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_usleep(t_philo *philo, int time)
 		if (philo->env->end)
 			return ;
 		gettimeofday(&now, NULL);
-		usleep((time % 100) + 1);
+		usleep(100);
 	}
 }
 

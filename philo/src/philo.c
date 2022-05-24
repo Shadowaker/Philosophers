@@ -6,7 +6,7 @@
 /*   By: dridolfo <dridolfo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 13:44:23 by dridolfo          #+#    #+#             */
-/*   Updated: 2022/05/11 17:35:17 by dridolfo         ###   ########.fr       */
+/*   Updated: 2022/05/24 16:52:23 by dridolfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ static void	pickup_fork(t_philo *philo)
 {
 	pthread_mutex_lock(philo->right);
 	log_(philo, "has taken a fork");
-	while (philo->env->n_philos == 1)
-	{
-		if (philo->env->end)
-			return ;
-		usleep(1);
-	}
 	pthread_mutex_lock(philo->left);
 	log_(philo, "has taken a fork");
 }
@@ -41,7 +35,7 @@ static void	eating(t_philo *philo)
 	if (philo->n_eat == philo->env->n_must_eat)
 		philo->env->n_philos_eat += 1;
 	pthread_mutex_unlock(&philo->env->mutex_);
-	ft_usleep(philo, philo->env->time_to_eat);
+	usleep(philo->env->time_to_eat * 1000);
 	pthread_mutex_unlock(philo->right);
 	pthread_mutex_unlock(philo->left);
 	pthread_mutex_unlock(&philo->check_mutex);
@@ -53,7 +47,7 @@ static void	sleeping(t_philo *philo)
 
 	i = 0;
 	log_(philo, "is sleeping");
-	ft_usleep(philo, philo->env->time_to_sleep);
+	usleep(philo->env->time_to_sleep * 1000);
 }
 
 static void	thinking(t_philo *philo)
@@ -68,7 +62,7 @@ void	*philo(void *argv)
 	philo = argv;
 	philo->n_eat = 0;
 	if (philo->n % 2 == 0)
-		ft_usleep(philo, philo->env->time_to_eat);
+		usleep((philo->env->time_to_eat - 100) * 1000);
 	while (!philo->env->end)
 	{
 		pickup_fork(philo);

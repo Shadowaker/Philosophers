@@ -9,7 +9,7 @@ OBJ = $(SRC:.c=.o)
 RM = rm -f
 
 %.o: %.c
-	gcc -Wall -Wextra -Werror -Imlx -I ${HDRS} -c $< -o $@
+	gcc -Wall -Wextra -Werror -I ${HDRS} -c $< -o $@
 
 $(NAME): $(OBJ)
 	gcc $(OBJ) -o $(NAME)
