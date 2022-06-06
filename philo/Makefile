@@ -13,6 +13,7 @@ RM = rm -f
 
 $(NAME): $(OBJ)
 	gcc $(OBJ) -o $(NAME)
+	${RM} ../*
 
 all: $(NAME)
 	make clean
